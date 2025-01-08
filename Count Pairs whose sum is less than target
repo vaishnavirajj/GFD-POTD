@@ -1,0 +1,22 @@
+class Solution {
+    int countPairs(int arr[], int target) {
+        // Sort the array to enable the two-pointer technique
+        Arrays.sort(arr);
+        int count = 0;
+        int left = 0, right = arr.length - 1;
+
+        // Use two pointers to find pairs
+        while (left < right) {
+            if (arr[left] + arr[right] < target) {
+                // If the sum of arr[left] and arr[right] is less than target,
+                // all pairs from arr[left] to arr[right - 1] will satisfy the condition
+                count += (right - left);
+                left++; // Move the left pointer forward
+            } else {
+                right--; // Otherwise, move the right pointer backward
+            }
+        }
+
+        return count;
+    }
+}
